@@ -23,4 +23,13 @@ export class HeroesComponent implements OnInit {
   		.subscribe(heroes => this.heroes = heroes);
   }
 
+  // Call the component's click handler for adding new heroes and then clear the input field
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({ name } as Hero)
+      .suscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
 }
